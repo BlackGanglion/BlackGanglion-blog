@@ -1,0 +1,33 @@
+<%- include admin-header.html %>
+
+<div class="container admin-main">
+  <div class="row">
+      <h2>
+        博文列表
+        <a href="post" class="btn btn-sm btn-primary pull-right">上传图片</a>
+        <a href="post" class="btn btn-sm btn-warning pull-right">添加新博文</a>
+      </h2>
+      <table class="table table-striped">
+        <thread>
+          <tr>
+            <th>编号</th>
+            <th>文章标题</th>
+            <th>发布时间</th>
+            <th>文章类型</th>
+            <th colspan="2">操作</th>
+          </tr>
+        </thread>
+        <tbody>
+          <% posts.forEach(function (post, index) { %>
+            <tr>
+              <td><%= post.postId %></td>
+              <td><%= post.title %></td>
+              <td><%= post.time.minute %></td>
+              <td><%= post.type %></td>
+              <td><a href="update/<%= post.postId %>" class="btn btn-sm btn-success">修改</a></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+</div>
+<%- include admin-footer.html %>

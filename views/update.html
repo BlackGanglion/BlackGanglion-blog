@@ -1,0 +1,64 @@
+<%- include admin-header.html %>
+
+<div class="container admin-main">
+  <div class="row">
+    <% if (success) { %>
+      <div class="alert alert-success" role="alert"><%= success %></div>
+    <% } %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">更新文章</h3>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal" method="post">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">编号</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" value="<%= post.postId %>" readonly/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">标题</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" name="title" value="<%= post.title %>"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">分类</label>
+            <div class="col-sm-4">
+              <select class="form-control" name="type" autocomplete="off">
+                <option value="unclassified" <% if(post.type == 'unclassified'){ %> selected="selected" <% } %> >未分类</option>
+                <option value="webDevelop" <% if(post.type == 'webDevelop'){ %> selected="selected" <% } %> >Web开发</option>
+                <option value="dataVisualization" <% if(post.type == 'dataVisualization'){ %> selected="selected" <% } %> >数据可视化</option>
+                <option value="technology" <% if(post.type == 'technology'){ %> selected="selected" <% } %> >技术随笔</option>
+                <option value="life" <% if(post.type == 'life'){ %> selected="selected" <% } %> >生活杂记</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">时间</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" value="<%= post.time.minute %>" readonly/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">正文</label>
+            <div class="col-sm-9">
+              <textarea name="post" id="update-text" class="form-control" rows="20"><%- post.post %></textarea>
+            </div>
+          </div>
+
+          <br>
+          <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-10">
+              <button type="submit" class="btn btn-primary">更新</button>
+              <a class="btn btn-warning" href="aindex">返回</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include footer.html %>

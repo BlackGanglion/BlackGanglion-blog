@@ -1,0 +1,28 @@
+<%- include admin-header.html %>
+
+<div class="container admin-main">
+  <div class="row">
+    <% if (success) { %>
+      <div class="alert alert-success" role="alert"><%= success %></div>
+    <% } %>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          上传图片
+        </h3>
+      </div>
+      <div class="panel-body">
+        <form method='post' action='/admin/upload' enctype='multipart/form-data' >
+          <input type="file" name='file1'/><br>
+          <input type="file" name='file2'/><br>
+          <input type="file" name='file3'/><br>
+          <input type="file" name='file4'/><br>
+          <input type="file" name='file5'/><br>
+          <button class="btn btn-success" type="submit">上传</button>
+          <a href="aindex" class="btn btn-warning pull-right">返回</a>
+       </form>
+      </div>
+    </div>
+
+<%- include admin-footer.html %>

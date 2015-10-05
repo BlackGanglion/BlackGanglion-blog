@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="the blog of Blackganglion">
+  <meta name="author" content="BlackGanglion">
+  <link rel="icon" href="favicon.ico">
+
+  <title>BlackGanglion-一只热爱志愿的程序猿</title>
+
+    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/main.css" rel="stylesheet">
+    <link href="/stylesheets/blog.css" rel="stylesheet">
+    <style type="text/css">
+       body {background-color: #eaeaea}
+    </style>
+</head>
+
+  <body>
+    <main class="container left-container">
+      <div class="row">
+        <section class="sidebar col-md-3 col-sm-12" style="background-image: url(/images/2.jpg)">
+          <div class="text-center" id="blog-post-logo">
+            <a href="#">
+              <img src="/images/fly-1.jpg" class="img-circle img-thumbnail">
+            </a>
+            <h3>爱but的苍蝇</h3>
+            <h5>程序猿，攻城狮，单身狗</h5>
+          </div>
+          <div class="site-info hidden-sm hidden-xs">
+            <div class="primary-info">
+              <p>我希望有个如你一般的人</p>
+              <p>如山间清爽的风，如古城温暖的光</p>
+              <p>从清晨到夜晚，从山野到书房</p>
+              <p>只要最后是你，就好</p>
+            </div>
+            <div class="secondary-info">
+              <p><a class="btn btn-primary" href="/">Back To HomePage</a></p>
+            </div>
+          </div>
+        </section>
+
+        <section class="col-md-11 col-sm-12 col-md-offset-5 main-content">
+          <div class="blog-post">
+            <h2 class="blog-post-title"><%= post.title %></h2>
+            <p class="blog-post-meta"><%= post.time.minute %> by <a href="#"><%= post.name %></a>
+              <span class="badge pull-right"><%= post.comment %></span>
+              <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
+              <span class="badge pull-right"><%= post.watch %></span>
+              <span class="glyphicon glyphicon-eye-open pull-right" aria-hidden="true"></span>
+            </p>
+            <p><%- post.post %></p>
+          </div>
+
+          <div class="blog-change pull-left hidden-xs">
+            <a href="/blog/<%= (post.postId - 1) %>">
+              <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+              <%= linkTitle.pre %>
+            </a>
+          </div>
+          <div class="blog-change pull-right hidden-xs">
+            <a href="/blog/<%= (post.postId + 1) %>">
+              <%= linkTitle.next %>
+              <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+            </a>
+          </div>
+
+          <div class="ds-thread" data-thread-key="<%= post.postId %>" data-title="<%= post.title %>" data-url=""></div>
+        </section>
+      </div>
+    </main>
+
+  </body>
+  <script src="/javascripts/jquery.min.js"></script>
+  <script src="/javascripts/bootstrap.min.js"></script>
+  <script type="text/javascript">
+  var url = document.location.href;
+  $('.ds-thread').attr('data-url', url);
+  </script>
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"blackganglion"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0]
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+  <script type="text/javascript">
+  var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+  document.write(unescape("%3Cspan id='cnzz_stat_icon_1255994044'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255994044' type='text/javascript'%3E%3C/script%3E"));
+  document.getElementById('cnzz_stat_icon_1255994044').style.display = 'none';
+  </script>
+  <script src="/javascripts/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>
