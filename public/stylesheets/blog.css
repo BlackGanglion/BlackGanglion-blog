@@ -1,27 +1,13 @@
-/*
- * Globals
- */
-
 body {
   font-family: Georgia, "Times New Roman", Times, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, serif;
   color: #555;
 }
 
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
+h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   font-weight: normal;
   color: #333;
 }
-
-
-/*
- * Override Bootstrap's default container.
- */
 
 @media (min-width: 1200px) {
   .container {
@@ -29,18 +15,12 @@ h6, .h6 {
   }
 }
 
-
-/*
- * Masthead for nav
- */
-
 .blog-masthead {
   background-color: #428bca;
   -webkit-box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
           box-shadow: inset 0 -2px 5px rgba(0,0,0,.1);
 }
 
-/* Nav links */
 .blog-nav-item {
   position: relative;
   display: inline-block;
@@ -54,7 +34,6 @@ h6, .h6 {
   text-decoration: none;
 }
 
-/* Active state gets a caret at the bottom */
 .blog-nav .active {
   color: #fff;
 }
@@ -71,11 +50,6 @@ h6, .h6 {
   border-bottom: 5px solid;
   border-left: 5px solid transparent;
 }
-
-
-/*
- * Blog name and description
- */
 
 .blog-header {
   background: url("../images/header.jpg");
@@ -98,17 +72,11 @@ h6, .h6 {
   font-weight: bold;
 }
 
-
-/*
- * Main column and sidebar layout
- */
-
 .blog-main {
   font-size: 18px;
   line-height: 1.5;
 }
 
-/* Sidebar modules for boxing content */
 .sidebar-module {
   padding: 15px;
   margin: 0 -15px 15px;
@@ -124,8 +92,6 @@ h6, .h6 {
   margin-bottom: 0;
 }
 
-
-/* Pagination */
 .pager {
   margin-bottom: 60px;
   text-align: left;
@@ -136,11 +102,6 @@ h6, .h6 {
   text-align: center;
   border-radius: 30px;
 }
-
-
-/*
- * Blog posts
- */
 
 .blog-post {
   margin-bottom: 80px;
@@ -154,11 +115,6 @@ h6, .h6 {
   margin-bottom: 20px;
   color: #999;
 }
-
-
-/*
- * Footer
- */
 
 .blog-footer {
   padding: 40px 0;
@@ -249,10 +205,8 @@ h6, .h6 {
 }
 
 .main-content{
-  margin-top: 36px;
   background-color:white;
   border-radius: 12px;
-  margin-bottom: 66px;
 }
 
 .blog-statistics > .badge{

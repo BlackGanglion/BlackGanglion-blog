@@ -9,68 +9,67 @@
   <meta name="author" content="BlackGanglion">
   <link rel="icon" href="favicon.ico">
 
-  <title>BlackGanglion-一只热爱志愿的程序猿</title>
+  <title>BlackGanglion - 一只热爱志愿的程序猿</title>
 
-    <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
-    <link href="/stylesheets/main.css" rel="stylesheet">
-    <link href="/stylesheets/blog.css" rel="stylesheet">
-    <style type="text/css">
-       body {background-color: #eaeaea}
-    </style>
+  <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+  <link href="/stylesheets/main.min.css" rel="stylesheet">
+  <link href="/stylesheets/blog.min.css" rel="stylesheet">
+  <style type="text/css">
+  body {background-color: #eaeaea}
+  </style>
 </head>
 
   <body>
-    <main class="container left-container">
-      <div class="row">
-        <section class="sidebar col-md-3 col-sm-12" style="background-image: url(/images/2.jpg)">
-          <div class="text-center" id="blog-post-logo">
-            <a href="#">
-              <img src="/images/fly-1.jpg" class="img-circle img-thumbnail">
-            </a>
-            <h3>爱but的苍蝇</h3>
-            <h5>程序猿，攻城狮，单身狗</h5>
+    <main class＝"blog-main">
+      <section class="sidebar col-lg-3 col-md-3 col-sm-12" style="background-image: url(/images/2.jpg)">
+        <div class="text-center" id="blog-post-logo">
+          <a href="#">
+            <img src="/images/fly-1.jpg" class="img-circle img-thumbnail">
+          </a>
+          <h3>爱but的苍蝇</h3>
+          <h5>程序猿，攻城狮，单身狗</h5>
+        </div>
+        <div class="site-info hidden-sm hidden-xs">
+          <div class="primary-info">
+            <p>我希望有个如你一般的人</p>
+            <p>如山间清爽的风，如古城温暖的光</p>
+            <p>从清晨到夜晚，从山野到书房</p>
+            <p>只要最后是你，就好</p>
           </div>
-          <div class="site-info hidden-sm hidden-xs">
-            <div class="primary-info">
-              <p>我希望有个如你一般的人</p>
-              <p>如山间清爽的风，如古城温暖的光</p>
-              <p>从清晨到夜晚，从山野到书房</p>
-              <p>只要最后是你，就好</p>
-            </div>
             <div class="secondary-info">
               <p><a class="btn btn-primary" href="/">Back To HomePage</a></p>
             </div>
           </div>
         </section>
 
-        <section class="col-md-11 col-sm-12 col-md-offset-5 main-content">
-          <div class="blog-post">
-            <h2 class="blog-post-title"><%= post.title %></h2>
-            <p class="blog-post-meta"><%= post.time.minute %> by <a href="#"><%= post.name %></a>
-              <span class="badge pull-right"><%= post.comment %></span>
-              <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
-              <span class="badge pull-right"><%= post.watch %></span>
-              <span class="glyphicon glyphicon-eye-open pull-right" aria-hidden="true"></span>
-            </p>
-            <p><%- post.post %></p>
-          </div>
+        <div class="col-lg-9 col-md-9 col-sm-12 col-lg-offset-3 col-md-offset-3">
+          <section class="main-content">
+            <div class="blog-post">
+              <h2 class="blog-post-title"><%= post.title %></h2>
+              <p class="blog-post-meta"><%= post.time.minute %> by <a href="#"><%= post.name %></a>
+                <span class="badge pull-right"><%= post.comment %></span>
+                <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
+                <span class="badge pull-right"><%= post.watch %></span>
+                <span class="glyphicon glyphicon-eye-open pull-right" aria-hidden="true"></span>
+              </p>
+              <p><%- post.post %></p>
+            </div>
 
-          <div class="blog-change pull-left hidden-xs">
-            <a href="/blog/<%= (post.postId - 1) %>">
-              <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
-              <%= linkTitle.pre %>
-            </a>
-          </div>
-          <div class="blog-change pull-right hidden-xs">
-            <a href="/blog/<%= (post.postId + 1) %>">
-              <%= linkTitle.next %>
-              <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
-            </a>
-          </div>
-
-          <div class="ds-thread" data-thread-key="<%= post.postId %>" data-title="<%= post.title %>" data-url=""></div>
-        </section>
-      </div>
+            <div class="blog-change pull-left hidden-xs">
+              <a href="/blog/<%= (post.postId - 1) %>">
+                <span class="glyphicon glyphicon-hand-left" aria-hidden="true"></span>
+                <%= linkTitle.pre %>
+              </a>
+            </div>
+            <div class="blog-change pull-right hidden-xs">
+              <a href="/blog/<%= (post.postId + 1) %>">
+                <%= linkTitle.next %>
+                <span class="glyphicon glyphicon-hand-right" aria-hidden="true"></span>
+              </a>
+            </div>
+            <div class="ds-thread" data-thread-key="<%= post.postId %>" data-title="<%= post.title %>" data-url=""></div>
+          </section>
+        </div>
     </main>
 
   </body>
