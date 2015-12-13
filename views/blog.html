@@ -12,8 +12,10 @@
   <title>BlackGanglion - 一只热爱志愿的程序猿</title>
 
   <link href="/stylesheets/bootstrap.min.css" rel="stylesheet">
+  <link href="/stylesheets/prism.css" rel="stylesheet">
   <link href="/stylesheets/main.min.css" rel="stylesheet">
   <link href="/stylesheets/blog.min.css" rel="stylesheet">
+
   <style type="text/css">
   body {background-color: #eaeaea}
   </style>
@@ -27,7 +29,7 @@
             <img src="/images/fly-1.jpg" class="img-circle img-thumbnail">
           </a>
           <h3>爱but的苍蝇</h3>
-          <h5>程序猿，攻城狮，单身狗</h5>
+          <h5>程序猿，攻城狮，<del>单身狗</del></h5>
         </div>
         <div class="site-info hidden-sm hidden-xs">
           <div class="primary-info">
@@ -43,6 +45,7 @@
         </section>
 
         <div class="col-lg-9 col-md-9 col-sm-12 col-lg-offset-3 col-md-offset-3">
+          <pre><code class="language-css">p { color: red }</code></pre>
           <section class="main-content">
             <div class="blog-post">
               <h2 class="blog-post-title"><%= post.title %></h2>
@@ -73,6 +76,7 @@
     </main>
 
   </body>
+  <script src="/javascripts/prism.js"></script>
   <script src="/javascripts/jquery.min.js"></script>
   <script src="/javascripts/bootstrap.min.js"></script>
   <script type="text/javascript">
