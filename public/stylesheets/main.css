@@ -10,7 +10,7 @@ body, button, input, select, textarea {
 }
 p {
     font-size: 1.8rem;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 a {
     border-bottom: 1px solid #fafafa;
@@ -715,10 +715,10 @@ ol li, ul li {
     font-size: 1.3rem;
 }
 hr {
-    border: 1px solid #dededc;
+    border: 1px solid #eee;
     display: block;
-    margin: 50px auto 40px;
-    width: 20%;
+    margin: 20px auto;
+    width: 100%;
 }
 blockquote {
     font-size: 2.4rem;
