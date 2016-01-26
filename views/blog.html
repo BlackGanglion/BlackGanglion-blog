@@ -22,9 +22,9 @@
 
   <body>
     <main class＝"blog-main">
-      <section class="sidebar col-lg-3 col-md-3 col-sm-12" style="background-image: url(/images/2.jpg)">
+      <section class="sidebar col-lg-3 col-md-3 col-sm-12">
         <div class="text-center" id="blog-post-logo">
-          <a href="#">
+          <a href="/">
             <img src="/images/fly-1.jpg" class="img-circle img-thumbnail">
           </a>
           <h3>爱but的苍蝇</h3>
@@ -47,7 +47,8 @@
           <section class="main-content">
             <div class="blog-post">
               <h2 class="blog-post-title"><%= post.title %></h2>
-              <p class="blog-post-meta"><%= post.time.minute %> by <a href="#"><%= post.name %></a>
+              <p class="blog-post-meta col-sm-8"><%= post.time.minute %> by <a href="/"><%= post.name %></a></p>
+              <p class="blog-post-meta col-sm-4">&nbsp
                 <span class="badge pull-right"><%= post.comment %></span>
                 <span class="glyphicon glyphicon-pencil pull-right" aria-hidden="true"></span>
                 <span class="badge pull-right"><%= post.watch %></span>
