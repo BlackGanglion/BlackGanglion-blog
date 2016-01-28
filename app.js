@@ -28,16 +28,19 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+//session
 app.use(session({
-      secret: settings.cookieSecret,
-      key: settings.db,
-      cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},
-      store: new MongoStore({
-        db: settings.db,
-        host: settings.host,
-        port: settings.port
-      })
-    }));
+  secret: settings.cookieSecret,
+  key: settings.db,
+  //12h后session和相应的cookie失效过期
+  cookie: {maxAge: 1000 * 60 * 60 * 12},
+  store: new MongoStore({
+    db: settings.db,
+    host: settings.host,
+    port: settings.port
+  })
+}));
 
 routes(app);
 

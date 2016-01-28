@@ -45,9 +45,8 @@ module.exports = function(app) {
 
   app.get('/admin/aindex', checkLogin);
   app.get('/admin/aindex', function(req, res){
-
     Post.getList(function (err, posts) {
-      res.render('aindex', {
+      res.render('admin/aindex', {
         title: '博文列表',
         posts: posts
       });
@@ -63,7 +62,7 @@ module.exports = function(app) {
             return res.redirect('/admin/aindex');
         }
 
-        res.render('update', {
+        res.render('admin/update', {
             post: post,
             success: req.flash('success').toString()
         });
@@ -74,10 +73,11 @@ module.exports = function(app) {
   app.post('/admin/update/:id', function (req, res){
     var id = parseInt(req.params.id, 10);
 
-    var post = [];
-    post.title = req.body.title;
-    post.type = req.body.type;
-    post.post = req.body.post;
+    var post = {
+      title: req.body.title,
+      type: req.body.type,
+      post: req.body.post
+    };
 
     Post.updateById(post, id, function(err){
       if (err) {
@@ -89,6 +89,7 @@ module.exports = function(app) {
     });
   });
 
+  /*
   app.get('/admin/reg', checkNotLogin);
   app.get('/admin/reg', function (req, res) {
     res.render('reg', {
@@ -149,6 +150,17 @@ module.exports = function(app) {
       });
     });
   });
+  */
+
+  app.get('/admin/login', checkNotLogin);
+  app.get('/admin/login', function (req, res) {
+    res.render('admin/login', {
+      title: '登录',
+      user: req.session.user,
+      success: req.flash('success').toString(),
+      error: req.flash('error').toString()
+    });
+  });
 
   app.post('/admin/login', function (req, res) {
     var md5 = crypto.createHash('md5');
@@ -167,22 +179,11 @@ module.exports = function(app) {
       req.flash('success', '登陆成功!');
       res.redirect('/admin/post');
     });
-
-  });
-
-  app.get('/admin/login', checkNotLogin);
-  app.get('/admin/login', function (req, res) {
-    res.render('login', {
-      title: '登录',
-      user: req.session.user,
-      success: req.flash('success').toString(),
-      error: req.flash('error').toString()
-    });
   });
 
   app.get('/admin/post', checkLogin);
   app.get('/admin/post', function (req, res) {
-    res.render('post', {
+    res.render('admin/post', {
       title: '发表',
       user: req.session.user,
       success: req.flash('success').toString(),
@@ -212,6 +213,7 @@ module.exports = function(app) {
     res.redirect('/admin/login');
   });
 
+  /*
   app.get('/admin/upload', checkLogin);
   app.get('/admin/upload', function (req, res) {
     res.render('upload', {
@@ -227,21 +229,22 @@ module.exports = function(app) {
     req.flash('success', '文件上传成功!');
     res.redirect('/admin/upload');
   });
+  */
 
   app.get('/blog/:id', function(req, res){
-      var id = parseInt(req.params.id, 10);
+    var id = parseInt(req.params.id, 10);
 
-      Post.getOneById(id, '1', function(err, post, linkTitle){
-          if(err || post == -1){
-              return res.redirect('/');
-          }
+    Post.getOneById(id, '1', function(err, post, linkTitle){
+      if(err || post == -1){
+        return res.redirect('/');
+      }
 
-          res.render('blog', {
-              title: post.title,
-              post: post,
-              linkTitle: linkTitle
-          });
+      res.render('blog', {
+        title: post.title,
+        post: post,
+        linkTitle: linkTitle
       });
+    });
   });
 };
 
