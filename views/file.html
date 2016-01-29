@@ -14,8 +14,8 @@
   <div class="container">
     <div class="row">
       <ul class="nav nav-pills blog-nav">
-        <li role="presentation" class="active"><a href="/">首页</a></li>
-        <li role="presentation"><a href="/file">归档</a></li>
+        <li role="presentation"><a href="/">首页</a></li>
+        <li role="presentation" class="active"><a href="/file">归档</a></li>
         <li role="presentation" class="hidden-xs"><a href="/life">生活</a></li>
         <li role="presentation"><a href="http://page.blackganglion.com/" target="_blank">关于</a></li>
 
@@ -30,72 +30,43 @@
      </ul>
 
      <div class="col-sm-8 blog-main">
-
-       <% posts.forEach(function (post, index) { %>
-       <div class="blog-post">
-         <h2 class="blog-post-title"><%= post.title %></h2>
-         <p class="blog-post-meta">
-           <%= post.time.minute %> by <a href="#"><%= post.name %></a>
-           <% if(post.type == 'unclassified'){ %>
-             <span class="label label-info label-mark"><%= post.type %></span>
-           <% } %>
-           <% if(post.type == 'webDevelop'){ %>
-             <span class="label label-danger label-mark"><%= post.type %></span>
-           <% } %>
-           <% if(post.type == 'dataVisualization'){ %>
-             <span class="label label-primary label-mark"><%= post.type %></span>
-           <% } %>
-           <% if(post.type == 'life'){ %>
-             <span class="label label-success label-mark"><%= post.type %></span>
-           <% } %>
-           <% if(post.type == 'technology'){ %>
-             <span class="label label-warning label-mark"><%= post.type %></span>
-           <% } %>
-         </p>
-         <div class="post-index"><%- post.post %></div>
-         <ul class="pager pull-right blog-more">
-           <li>
-             <a href="/blog/<%= post.postId %>">Read More</a>
-           </li>
-         </ul>
+       <%
+          var lastYear = -1;
+          for(var index in resList){
+            var yearMonth = index.split('-');
+       %>
+       <% if(yearMonth[0] != lastYear){ %>
+         <div class="panel panel-info" id="<%= yearMonth[0] %>">
+       <% lastYear = yearMonth[0]; } else { %>
+         <div class="panel panel-info">
+       <% } %>
+         <div class="panel-heading">
+           <%= yearMonth[0] + ' 年 ' + yearMonth[1] + ' 月' %>
+         </div>
+         <div class="panel-body">
+           <ul>
+             <% resList[index].forEach(function (post, e){ %>
+               <li>
+                 <a href="/blog/<%= post.postId %>"><%= post.title %></a>
+                 <i class="date">&nbsp<%= ' ( ' + post.year + ' - ' + post.month + ' - ' + post.day + ' ) ' %></i>
+               </li>
+             <% }) %>
+           </ul>
+         </div>
        </div>
-       <% }) %>
-
-       <nav>
-         <ul class="pager">
-           <% if(!isFirstPage){ %>
-           <li>
-             <a href="?p=<%= page - 1 %>">
-               <span class="glyphicon glyphicon-backward" aria-hidden="true"></span>
-               Previous
-             </a>
-           </li>
-           <% } %>
-           <% if(!isLastPage){ %>
-           <li>
-             <a href="?p=<%= page + 1 %>">
-               Next
-               <span class="glyphicon glyphicon-forward" aria-hidden="true"></span>
-             </a>
-           </li>
-           <% } %>
-         </ul>
-       </nav>
-
+       <% } %>
      </div>
 
      <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
        <div class="sidebar-module sidebar-module-inset">
          <h4>
-           <img src="/images/fly1.jpg" class="img-circle small-logo" /> 我的博文分类
+           <img src="/images/fly1.jpg" class="img-circle small-logo" /> 我的年份列表
          </h4>
-         <ol class="list-unstyled" id="classify">
-           <li><a href="unclassified">未分类 (<%- everyTypeCount.unclassified %>)</a></li>
-           <li><a href="webDevelop">Web开发 (<%- everyTypeCount.webDevelop %>) </a></li>
-           <li><a href="dataVisualization">数据可视化 (<%- everyTypeCount.dataVisualization %>) </a></li>
-           <li><a href="technology">技术随笔 (<%- everyTypeCount.technology %>) </a></li>
-           <li><a href="life">生活杂记 (<%- everyTypeCount.life %>) </a></li>
-         </ol>
+         <ul id="yearlist">
+           <% yearList.forEach(function (year, index) { %>
+             <li><a href="#<%= year.year %>"><%= year.year %>年</a></li>
+           <% }) %>
+         </ul>
        </div>
 
        <div class="sidebar-module sidebar-module-inset">

@@ -1,6 +1,6 @@
 {
   "name": "BlackGanglion-blog",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "scripts": {
     "start": "forever start ./bin/www",
     "stop": "forever stop ./bin/www",

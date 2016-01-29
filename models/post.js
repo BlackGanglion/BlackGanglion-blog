@@ -82,8 +82,6 @@ Post.getALL = function(type, page, callback) {
 		}],
 
 		listArticles: ['connect', function(asynccallback, results) {
-			var posts = [];
-
 			results.connect.find(null, {
 				skip: (page - 1) * 5,
 				limit: 5

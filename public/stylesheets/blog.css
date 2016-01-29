@@ -236,6 +236,18 @@ pre{
   margin-bottom: 25px;
 }
 
+#yearlist{
+  padding-left: 30px;
+}
+
+#yearlist li{
+  margin: 15px 0;
+}
+
+.date{
+  color: #999;
+}
+
 @media (min-width: 1200px) {
   .container {
     width: 970px;

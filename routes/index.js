@@ -2,6 +2,7 @@ var express = require('express');
 var crypto = require('crypto');
 var User = require('../models/user.js');
 var Post = require('../models/post.js');
+var File = require('../models/file.js');
 
 module.exports = function(app) {
   app.get('/', function (req, res) {
@@ -21,6 +22,23 @@ module.exports = function(app) {
         page: page
       });
     });
+  });
+
+  app.get('/file', function(req,res){
+    File.getYearList(function (err, yearList, resList){
+      res.render('file', {
+        yearList: yearList,
+        resList: resList
+      });
+    });
+  });
+
+  app.get('/life', function(req, res){
+    res.render('life');
+  });
+
+  app.get('/seach', function(req, res){
+    res.render('search');
   });
 
   app.get('/:type', function (req, res) {
