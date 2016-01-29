@@ -66,6 +66,10 @@ Post.prototype.save = function(callback) {
 
 //读取文章及其相关信息, 统计各个分类的文章数
 Post.getALL = function(type, page, callback) {
+	var query = {};
+	if (type) {
+		query.type = type;
+	}
 
 	async.auto({
 		connect: function(asynccallback) {
@@ -76,13 +80,13 @@ Post.getALL = function(type, page, callback) {
 		},
 
 		countArticles: ['connect', function(asynccallback, results) {
-			results.connect.count(null, function(err, count) {
+			results.connect.count(query, function(err, count) {
 				asynccallback(err, count);
       });
 		}],
 
 		listArticles: ['connect', function(asynccallback, results) {
-			results.connect.find(null, {
+			results.connect.find(query, {
 				skip: (page - 1) * 5,
 				limit: 5
 			}).sort({

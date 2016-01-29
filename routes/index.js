@@ -33,7 +33,7 @@ module.exports = function(app) {
     });
   });
 
-  app.get('/life', function(req, res){
+  app.get('/mylife', function(req, res){
     res.render('life');
   });
 
@@ -42,6 +42,7 @@ module.exports = function(app) {
   });
 
   app.get('/:type', function (req, res) {
+    console.log('dsffd');
     var type = req.params.type;
     var page = req.query.p ? parseInt(req.query.p) : 1;
 
