@@ -24,6 +24,26 @@ module.exports = function(app) {
     });
   });
 
+  app.post('/', function (req, res) {
+    // 查询功能还未开放，暂时和get一致
+    var page = 1;
+
+    Post.getALL(null, page, function (err, posts, everyTypeCount, total) {
+      if (err) {
+        posts = [];
+      }
+
+      res.render('index', {
+        title: '主页',
+        posts: posts,
+        everyTypeCount: everyTypeCount,
+        isFirstPage: (page - 1) == 0,
+        isLastPage: ((page - 1) * 5 + posts.length) == total,
+        page: page
+      });
+    });
+  });
+
   app.get('/file', function(req,res){
     File.getYearList(function (err, yearList, resList){
       res.render('file', {
