@@ -25,7 +25,6 @@ module.exports = function(app) {
   });
 
   app.post('/', function (req, res) {
-    // 查询功能还未开放，暂时和get一致
     var page = 1;
 
     Post.getALL(null, page, function (err, posts, everyTypeCount, total) {

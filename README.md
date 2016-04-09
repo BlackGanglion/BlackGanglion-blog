@@ -11,3 +11,5 @@
 - [ ] 界面设计与优化
 
 - [ ] 增加归档和生活板块
+
+- [x] 使用 [alinode](http://alinode.aliyun.com/) 进行性能监控

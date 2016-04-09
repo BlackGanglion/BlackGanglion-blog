@@ -4,7 +4,9 @@
   "scripts": {
     "start": "forever start ./bin/www",
     "stop": "forever stop ./bin/www",
-    "test": "supervisor ./bin/www"
+    "test": "supervisor ./bin/www",
+    "agentx": "nohup agentx config.json &",
+    "alinode": "tnvm use alinode-v1.5.3"
   },
   "dependencies": {
     "async": "^1.5.0",
