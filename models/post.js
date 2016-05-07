@@ -39,12 +39,16 @@ Post.prototype.save = function(callback) {
 	};
 
 	async.auto({
-		connect: function(asynccallback) {
+		init: function(asynccallback) {
 			MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
-				var collection = db.collection(settings.collections[0]);
-				asynccallback(err, collection);
+				asynccallback(err, db);
 			});
 		},
+
+		connect: ['init', function(asynccallback, results) {
+			var collection = results.init.collection(settings.collections[0]);
+			asynccallback(null, collection);
+		}],
 
 		countPosts: ['connect', function(asynccallback, results) {
 			results.connect.count(function(err, count){
@@ -60,6 +64,7 @@ Post.prototype.save = function(callback) {
 			});
 		}]
 	}, function(err, results){
+		results.init.close();
 		callback(err);
 	});
 }
@@ -72,12 +77,16 @@ Post.getALL = function(type, page, callback) {
 	}
 
 	async.auto({
-		connect: function(asynccallback) {
+		init: function(asynccallback) {
 			MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
-				var collection = db.collection(settings.collections[0]);
-				asynccallback(err, collection);
+				asynccallback(err, db);
 			});
 		},
+
+		connect: ['init', function(asynccallback, results) {
+			var collection = results.init.collection(settings.collections[0]);
+			asynccallback(null, collection);
+		}],
 
 		countArticles: ['connect', function(asynccallback, results) {
 			results.connect.count(query, function(err, count) {
@@ -134,7 +143,7 @@ Post.getALL = function(type, page, callback) {
 			});
 		}]
 	}, function(err, results) {
-		//console.log(err);
+		results.init.close();
 
 		var everyTypeCount = {
 			unclassified: results.countunClassified,
@@ -143,6 +152,7 @@ Post.getALL = function(type, page, callback) {
 			technology: results.countTechnology,
 			life: results.countLife
 		}
+
 		//成功, 以数组形式返回查询的结果
 		callback(null, results.listArticles, everyTypeCount, results.countArticles);
 	});
@@ -151,12 +161,16 @@ Post.getALL = function(type, page, callback) {
 //根据ID获取一篇文章
 Post.getOneById = function(id, flag, callback) {
 	async.auto({
-		connect: function(asynccallback) {
+		init: function(asynccallback) {
 			MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
-				var collection = db.collection(settings.collections[0]);
-				asynccallback(err, collection);
+				asynccallback(err, db);
 			});
 		},
+
+		connect: ['init', function(asynccallback, results) {
+			var collection = results.init.collection(settings.collections[0]);
+			asynccallback(null, collection);
+		}],
 
 		findPost: ['connect', function(asynccallback, results) {
 			results.connect.findOne({ postId: id }, function (err, doc) {
@@ -213,6 +227,7 @@ Post.getOneById = function(id, flag, callback) {
 			}
 		}]
 	}, function(err, results) {
+		results.init.close();
 		if(results.findPost === -1){
 			callback(null, results.findPost, null);
 		} else {
@@ -229,12 +244,16 @@ Post.getOneById = function(id, flag, callback) {
 
 Post.getList = function (callback) {
 	async.auto({
-		connect: function(asynccallback) {
+		init: function(asynccallback) {
 			MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
-				var collection = db.collection(settings.collections[0]);
-				asynccallback(err, collection);
+				asynccallback(err, db);
 			});
 		},
+
+		connect: ['init', function(asynccallback, results) {
+			var collection = results.init.collection(settings.collections[0]);
+			asynccallback(null, collection);
+		}],
 
 		allPosts: ['connect', function(asynccallback, results){
 			results.connect.find({}).sort({ time: -1 }).toArray(function (err, posts) {
@@ -242,18 +261,23 @@ Post.getList = function (callback) {
       });
 		}]
 	}, function(err, results){
+		results.init.close();
 		callback(err, results.allPosts);
 	});
 }
 
 Post.updateById = function (post, id, callback) {
 	async.auto({
-		connect: function(asynccallback) {
+		init: function(asynccallback) {
 			MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
-				var collection = db.collection(settings.collections[0]);
-				asynccallback(err, collection);
+				asynccallback(err, db);
 			});
 		},
+
+		connect: ['init', function(asynccallback, results) {
+			var collection = results.init.collection(settings.collections[0]);
+			asynccallback(null, collection);
+		}],
 
 		updatePost: ['connect', function(asynccallback, results){
 			results.connect.update({
@@ -269,6 +293,7 @@ Post.updateById = function (post, id, callback) {
 			});
 		}]
 	}, function(err, results){
+		results.init.close();
 		callback(err);
 	});
 }

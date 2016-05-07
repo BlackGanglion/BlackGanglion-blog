@@ -8,12 +8,16 @@ module.exports = File;
 
 File.getYearList = function(callback){
   async.auto({
-		connect: function(asynccallback) {
-			MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
-				var collection = db.collection(settings.collections[0]);
-				asynccallback(err, collection);
-			});
-		},
+		init: function(asynccallback) {
+      MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
+        asynccallback(err, db);
+      });
+    },
+
+    connect: ['init', function(asynccallback, results) {
+      var collection = results.init.collection(settings.collections[0]);
+      asynccallback(null, collection);
+    }],
 
 		allArticles: ['connect', function(asynccallback, results) {
 			results.connect.find({}).sort({ time: -1 }).toArray(function (err, posts) {
@@ -85,6 +89,7 @@ File.getYearList = function(callback){
       });
     }]
 	}, function(err, results) {
+    results.init.close();
     //console.log(results.handle.year);
     //console.log(results.handle.res);
 		callback(err, results.handle.year, results.handle.res);

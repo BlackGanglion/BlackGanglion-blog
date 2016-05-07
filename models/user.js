@@ -45,12 +45,16 @@ User.prototype.save = function(callback) {
 
 User.get = function(name, callback) {
   async.auto({
-    connect: function(asynccallback) {
-			MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
-				var collection = db.collection(settings.collections[1]);
-				asynccallback(err, collection);
-			});
-		},
+    init: function(asynccallback) {
+      MongoClient.connect('mongodb://localhost:27017/blog', function(err, db) {
+        asynccallback(err, db);
+      });
+    },
+
+    connect: ['init', function(asynccallback, results) {
+      var collection = results.init.collection(settings.collections[1]);
+      asynccallback(null, collection);
+    }],
 
     findUser: ['connect', function(asynccallback, results){
       results.connect.findOne({ name: name }, function (err, user) {
@@ -58,6 +62,7 @@ User.get = function(name, callback) {
       });
     }]
   }, function(err, results){
+    results.init.close();
     callback(err, results.findUser);
   });
 }
